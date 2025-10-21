@@ -34,20 +34,23 @@ Known Issues:
 
 
 <script>
-        var allergy_count = 0;
-        var cold_count = 0;
+       function changetext(){
+    var total = allergy_count + cold_count;
+    var percent_allergy = 0;
+    var percent_cold = 0;
+	var initialText = document.getElementById("results"); 
+    initialText.innerHTML = 
+        "Probability it is allergies = " + percent_allergy + "%<br>" +
+        "Probability it is a cold = " + percent_cold + "%";
+	}
+
+    if (total > 0) {
+        percent_allergy = Math.round((allergy_count / total) * 100);
+        percent_cold = Math.round((cold_count / total) * 100);
+    }
+</script>
 
 
-        function allergyAdd(){
-            allergy_count = allergy_count + 1;
-		alert(allergy_count);
-        }
-
-        function coldAdd(){
-            cold_count = cold_count + 1;
-        }
-
-  </script>
 
 
 
@@ -55,6 +58,7 @@ Known Issues:
 .body {
      margin: 0em;
 }
+
 .page {
     width: 100vw;
     height: 100vh;
@@ -152,9 +156,18 @@ Known Issues:
         <a href="#seven" onclick=allergyAdd() class="w3-btn w3-grey w3-round"> Yes</a>
         <a href="#seven" onclick=coldAdd() class="w3-btn w3-grey w3-round"> No</a>
 	</div>
+</div>	
+<div class="page" id="seven">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Results</h1>
+	</div>
+	<div id="content" class="w3-container">
+
+        <p id="results"> Press on the button below to see your results!</p>
+		<a onclick="changeText()" class="w3-btn w3-grey w3-round"> Click here to see your results!</a>
+	</div>
 <footer class="w3-bottom w3-container w3-flat-carrot">
 	<p>DIY!</p>
 </footer>
-
-</body>
+</body>	   
 </html>
